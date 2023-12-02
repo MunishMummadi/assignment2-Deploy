@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .admin-dashboard {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 90%; /* increased width for better visibility */
+      max-width: 1200px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #eee;
+    }
+
+    #searchInput {
+      flex-grow: 1; /* take remaining space in the header */
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .search-icon,
+    .bulk-delete {
+    margin-left: 8px;
+    background-color: #f44336;
+    color: #fff;
+}
+
+
+.bulk-delete {
+    margin-left: 8px;
+    background-color: #f44336; /* Red background color */
+    color: #fff; /* White text color */
+}
+
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+    }
+
+    button {
+      margin: 4px;
+      padding: 8px;
+      cursor: pointer;
+      border: none;
+      background-color: #ddd;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ccc;
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 768px) {
+      .admin-dashboard {
+        width: 95%; /* adjust width for smaller screens */
+      }
+
+      .header {
+        flex-direction: column; /* stack items in a column */
+        align-items: flex-start;
+      }
+
+      #searchInput {
+        margin-top: 8px; /* add space between search input and buttons */
+      }
+
+      .search-icon,
+      .bulk-delete {
+        margin-top: 8px; /* add space between buttons */
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+  <title>Admin Dashboard</title>
+</head>
+<body>
+  <div class="admin-dashboard">
+    <div class="header">
+      <input type="text" placeholder="Search..." id="searchInput">
+      <button class="search-icon" onclick="search()">&#128269;</button>
+      <button class="bulk-delete" onclick="deleteSelected()">🗑️</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <!-- Rows will be dynamically added here -->
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <span id="selectedColumns">0 Columns Selected</span>
+      <button class="first-page" onclick="goToPage(1)">First</button>
+      <button class="previous-page" onclick="previousPage()">Previous</button>
+      <span id="currentPage">Page 1</span>
+      <button class="next-page" onclick="nextPage()">Next</button>
+      <button class="last-page" onclick="goToPage(getTotalPages())">Last</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
